@@ -1,0 +1,12 @@
+# This is Git's per-user configuration file.
+[user]
+	name = Artur Manuel
+	email = amad@atl.tools
+	signingKey = ~/.ssh/id_ed25519.pub
+# Please adapt and uncomment the following lines:
+#	name = 
+#	email = amadaluzia@pompeynixos.(none)
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true

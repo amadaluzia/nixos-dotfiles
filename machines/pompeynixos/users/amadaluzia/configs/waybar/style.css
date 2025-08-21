@@ -1,0 +1,61 @@
+@define-color base00 #f8f9fa;
+@define-color base01 #edeff1;
+@define-color base02 #d2d4d8;
+@define-color base03 #a0a6ac;
+@define-color base04 #8a9199;
+@define-color base05 #5c6166;
+@define-color base06 #4e5257;
+@define-color base07 #404447;
+@define-color base08 #f07171;
+@define-color base09 #fa8d3e;
+@define-color base0A #f2ae49;
+@define-color base0B #6cbf49;
+@define-color base0C #4cbf99;
+@define-color base0D #399ee6;
+@define-color base0E #a37acc;
+@define-color base0F #e6ba7e;
+
+* {
+    all: unset;
+    font-family: CaskaydiaCove Nerd Font Mono;
+    font-size: 10pt;
+    color: @base05;
+}
+
+box .horizontal {
+    padding: 4px;
+}
+
+window#waybar {
+    background: @base00;
+}
+
+tooltip {
+    background: @base00;
+    border: 1px solid @base0C;
+    padding: 2px;
+}
+
+button {
+    padding: 0px 12px;
+    border-radius: 100px;
+    transition: background 0.1s;
+}
+
+button:hover {
+    background: @base02;
+}
+
+#workspaces {
+    background: @base01;
+    border-radius: 100px;
+    padding: 0px;
+}
+
+#workspaces button.focused {
+    background: @base02;
+}
+
+#workspaces button.urgent {
+    background: @base08;
+}
