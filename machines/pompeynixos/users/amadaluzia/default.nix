@@ -30,6 +30,8 @@
         pavucontrol
         vesktop
         rmg-wayland
+        ripgrep
+        bat
         ;
       inherit (pkgs.sway-contrib) grimshot;
       inherit (inputs.nvf.packages.${system}) default;
