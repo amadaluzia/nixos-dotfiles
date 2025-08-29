@@ -8,6 +8,11 @@
       enable = true;
       pulse.enable = true;
     };
+    udev.packages = [
+      pkgs.android-udev-rules
+    ];
+    gnome.gnome-keyring.enable = true;
+    guix.enable = true;
     openssh.enable = true;
     lvm.enable = true;
     printing.enable = true;
@@ -49,11 +54,13 @@
       ];
       xwayland.enable = false;
     };
+    adb.enable = true;
     waybar.enable = true;
   };
 
   environment.systemPackages = [
     pkgs.wget
     pkgs.neovim
+    pkgs.qemu
   ];
 }

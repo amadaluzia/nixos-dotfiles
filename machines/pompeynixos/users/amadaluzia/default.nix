@@ -12,7 +12,9 @@
       "video"
       "audio"
       "input"
+      "adbusers"
     ];
+    shell = self.packages.${system}.myxonsh;
     packages = builtins.attrValues {
       inherit
         (pkgs)
@@ -32,6 +34,7 @@
         rmg-wayland
         ripgrep
         bat
+        android-studio
         ;
       inherit (pkgs.sway-contrib) grimshot;
       inherit (inputs.nvf.packages.${system}) default;
