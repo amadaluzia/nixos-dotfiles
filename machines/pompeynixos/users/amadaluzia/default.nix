@@ -13,6 +13,7 @@
       "audio"
       "input"
       "adbusers"
+      "podman"
     ];
     shell = self.packages.${system}.myxonsh;
     packages = builtins.attrValues {

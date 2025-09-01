@@ -18,12 +18,16 @@
     printing.enable = true;
   };
 
-  virtualisation.podman = {
-    enable = true;
-    extraPackages = [
-      pkgs.podman-compose
-    ];
-    dockerSocket.enable = true;
+  virtualisation = {
+    podman = {
+      enable = true;
+      extraPackages = [
+        pkgs.podman-compose
+      ];
+      dockerCompat = true;
+      defaultNetwork.settings.dns_enabled = true;
+    };
+    containers.enable = true;
   };
 
   programs = {
@@ -54,6 +58,7 @@
       ];
       xwayland.enable = false;
     };
+    gnupg.agent.enable = true;
     adb.enable = true;
     waybar.enable = true;
   };

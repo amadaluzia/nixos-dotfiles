@@ -80,7 +80,7 @@
     "max-length": 25
   },
   "tray": {
-    "icon-size": 21,
+    "icon-size": 17,
     "spacing": 10
   }
 }
