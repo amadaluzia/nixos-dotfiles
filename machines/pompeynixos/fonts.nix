@@ -8,7 +8,7 @@
     ];
     fontconfig.defaultFonts = {
       monospace = ["MonaspiceKr Nerd Font Mono"];
-      sansSerif = ["MonaspiceNeNerd Font"];
+      sansSerif = ["MonaspiceKr Nerd Font Mono"];
       serif = ["MonaspiceXe Nerd Font Mono"];
       emoji = ["Noto Sans Emoji"];
     };

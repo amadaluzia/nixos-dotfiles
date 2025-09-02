@@ -38,34 +38,29 @@
         pkgs.obs-studio-plugins.obs-livesplit-one
       ];
     };
-    sway = {
-      enable = true;
-      wrapperFeatures = {
-        base = true;
-        gtk = true;
-      };
-      extraOptions = [
-        "--unsupported-gpu"
-      ];
-      extraPackages = [
-        pkgs.brightnessctl
-        pkgs.foot
-        pkgs.wmenu
-        pkgs.swayidle
-        pkgs.swaylock
-        pkgs.mako
-        pkgs.wl-clipboard
-      ];
-      xwayland.enable = false;
-    };
+    niri.enable = true;
+    nano.enable = false;
     gnupg.agent.enable = true;
     adb.enable = true;
     waybar.enable = true;
   };
 
-  environment.systemPackages = [
-    pkgs.wget
-    pkgs.neovim
-    pkgs.qemu
-  ];
+  environment = {
+    sessionVariables = {
+      "EDITOR" = "nvim";
+    };
+    systemPackages = [
+      pkgs.wget
+      pkgs.neovim
+      pkgs.qemu
+      pkgs.brightnessctl
+      pkgs.foot
+      pkgs.wmenu
+      pkgs.swayidle
+      pkgs.swaylock
+      pkgs.mako
+      pkgs.wl-clipboard
+      pkgs.swaybg
+    ];
+  };
 }

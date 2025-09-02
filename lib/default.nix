@@ -1,5 +1,6 @@
 inputs: let
   inherit (inputs.nixpkgs.lib.attrsets) filterAttrs;
+  inherit (inputs.nixpkgs.lib.generators) toINI mkKeyValueDefault mkValueStringDefault;
   mkNixosMachine = {
     system,
     hostname,
@@ -18,11 +19,12 @@ inputs: let
         {
           inherit inputs system;
           inherit (inputs) self;
+          inherit (inputs.self) lib';
         }
         // extraSpecialArgs;
     };
   mkNixosMachines = machines:
-    __mapAttrs (
+    builtins.mapAttrs (
       hostname: conf:
         mkNixosMachine (
           {
@@ -33,12 +35,12 @@ inputs: let
     )
     machines;
   listFilesRecursive = dir:
-    filterAttrs (_: v: v != {}) (__mapAttrs (
+    filterAttrs (_: v: v != {}) (builtins.mapAttrs (
       path: type:
         if type == "directory"
         then listFilesRecursive /${dir}/${path}
         else /${dir}/${path}
-    ) (__readDir dir));
+    ) (builtins.readDir dir));
   attrsToTmpfiles = {
     type,
     path,
@@ -48,7 +50,7 @@ inputs: let
     age,
     arg ? null,
   }:
-    __concatStringsSep " " (__filter (c: c != null) [
+    builtins.concatStringsSep " " (builtins.filter (c: c != null) [
       type
       path
       mode
@@ -57,6 +59,29 @@ inputs: let
       age
       arg
     ]);
+  mkDconfUser = pkgs: source:
+    pkgs.runCommand "dconf-user" {
+      buildInputs = [
+        pkgs.dconf
+      ];
+    } ''
+      mkdir src
+      cp ${source} src
+      dconf compile $out src
+    '';
+  toSystemdUnit = toINI {
+    mkKeyValue = mkKeyValueDefault {
+      mkValueString = v:
+        if builtins.isList v
+        then builtins.concatStringsSep " " v
+        else mkValueStringDefault {} v;
+    } "=";
+  };
+  mkSystemdUnit = pkgs: name: attrs:
+    pkgs.writeTextFile {
+      inherit name;
+      text = toSystemdUnit attrs;
+    };
 in {
-  inherit mkNixosMachines listFilesRecursive attrsToTmpfiles;
+  inherit mkNixosMachines listFilesRecursive attrsToTmpfiles mkDconfUser mkSystemdUnit;
 }

@@ -4,7 +4,7 @@
   "position": "top",
   "spacing": 12,
   "modules-left": [
-    "sway/workspaces"
+    "niri/workspaces"
   ],
   "modules-center": [
     "clock"
